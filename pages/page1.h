@@ -12,6 +12,7 @@ class Solutions{
         void id2(const long int& num_id2);
         void id3(const long int& num_id3);
         void id5(const unsigned int& lower_bound,const unsigned int& upper_bound);
+        void id6(const unsigned int& lower_bound,const unsigned int& upper_bound);
 };
 
 #endif

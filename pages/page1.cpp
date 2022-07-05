@@ -1,11 +1,15 @@
 #include <iostream>
 #include "page1.h"
 #include <iomanip>
+#include <algorithm>
+#include <vector>
+#include <cmath>
 
 using std::cout;
 using std::cin;
 using std::endl;
-using std::map;
+using std::vector;
+using std::for_each;
 
 Solutions::Solutions(){
 
@@ -54,7 +58,7 @@ void Solutions::id3(const long int& num_id3){
             div++;
         }
     }
-    cout << "The largest prime factor of the number " << num_id3 << " is:" << max_prime_factor << endl;
+    cout << "The largest prime factor of the number " << num_id3 << " is: " << max_prime_factor << endl;
     
     
 }
@@ -70,7 +74,28 @@ void Solutions::id5(const unsigned int& lower_bound,const unsigned int& upper_bo
             start_point++;
         }
     } 
-    cout << "The smallest positive number that is evenly divisible by all numbers from " << lower_bound << " to " << upper_bound << " is: " << start_point << endl;
+    cout << "The smallest positive number that is evenly divisible by all numbers from " << lower_bound << " to " << upper_bound << " is: " << start_point << endl << ".";
+}
+void Solutions::id6(const unsigned int& lower_bound,const unsigned int& upper_bound){
+    // With use of lambda expression
+    // Range of integers between lower bound and upper bound
+    vector<int> range;
+    for(unsigned int i = lower_bound; i < upper_bound+1; i++){
+        range.push_back(i);
+    }
+    unsigned int sum_square = 0;
+    unsigned int square_sum = 0;
+    // Lambda expression for sum_square
+    for_each(range.begin(),range.end(),[&sum_square](int n){
+        sum_square += n*n;
+    });
+    // Lambda expression for square_sum
+    for_each(range.begin(),range.end(),[&square_sum](int n){
+        square_sum += n;
+    });
+    square_sum = square_sum*square_sum;
+    cout << "The difference between the sum of the squares of the first " << upper_bound << " numbers and the square of the sum is: " << sum_square-square_sum << "."<< endl;
+    
 }
 Solutions::~Solutions(){
 
