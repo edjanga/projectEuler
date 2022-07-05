@@ -40,19 +40,15 @@ void Solutions::id2(const long int& num_id2){
     cout << "The sum of the even-valued Fibonacci terms less than " << num_id2 << " is: " << even_sum_under_limit << "." << endl;
     
 }
-void Solutions::id3(const long int& num_id3 = 600851475143){
+void Solutions::id3(const long int& num_id3){
 
     long int copy_num_id3 = num_id3;
-    //int *arr = new int[num];
     unsigned int div = 2;
-    //unsigned int i = 0;
     unsigned int max_prime_factor;
     while(copy_num_id3>1){
         if((copy_num_id3%div)==0){
             max_prime_factor = div;
-            //arr[i] = div;
             copy_num_id3 /= div;
-            //i++;
         }
         else{
             div++;
@@ -61,6 +57,20 @@ void Solutions::id3(const long int& num_id3 = 600851475143){
     cout << "The largest prime factor of the number " << num_id3 << " is:" << max_prime_factor << endl;
     
     
+}
+void Solutions::id5(const unsigned int& lower_bound,const unsigned int& upper_bound){
+    unsigned int start_point = upper_bound+1;
+    unsigned int div = lower_bound;
+    while(div<=upper_bound){
+        if((start_point%div)==0){
+            div++;
+        }
+        else{
+            div = lower_bound;
+            start_point++;
+        }
+    } 
+    cout << "The smallest positive number that is evenly divisible by all numbers from " << lower_bound << " to " << upper_bound << " is: " << start_point << endl;
 }
 Solutions::~Solutions(){
 

@@ -11,6 +11,7 @@ class Solutions{
         int fibNumberModified(const unsigned int& n); // Method needed to solve other problems.
         void id2(const long int& num_id2);
         void id3(const long int& num_id3);
+        void id5(const unsigned int& lower_bound,const unsigned int& upper_bound);
 };
 
 #endif
