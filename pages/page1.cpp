@@ -8,7 +8,7 @@ using std::endl;
 using std::map;
 
 Solutions::Solutions(){
-    cout << "Test" << endl;
+
 }
 void Solutions::id1(){
     int sum = 0;
@@ -17,32 +17,32 @@ void Solutions::id1(){
             sum += i;
         }
     }
-    cout << "The sum of all multiples of 3 or 5 smaller than 1000 is: " << sum << endl;
+    cout << "The sum of all multiples of 3 or 5 smaller than 1000 is: " << sum << "." << endl;
 }
-int Solutions::fibNumber(unsigned int& n, std::map<int,int>& memo = std::map<int,int>()){
+int Solutions::fibNumberModified(const unsigned int& n){
     // N-th Fib in O(n) time
-    if((n==1)||(n==2)) return n;
-    if(memo.find(n) == memo.end()) return memo.at(n);
-    return memo.insert({n,fibNumber(n-1,memo)+fibNumber(n-2,memo)});
+    int *arr = new int[n];
+    arr[0] = 1;
+    arr[1] = 2;
+    unsigned int sum = 0;
+    unsigned int i = 2;
+    while((arr[i-1]+arr[i-2])<=n){
+        arr[i] = arr[i-1]+arr[i-2];
+        if(arr[i]%2==0) sum += arr[i];
+        i++;
+    }
+    delete [] arr;
+    return sum;
 }
-/*void Solutions::id2(){
+void Solutions::id2(){
 
     long int limit = 4000000;
-    int *arr = new int[limit];
-    
-    unsigned int sum = 0;
-    for(unsigned int i = 0; i < limit; i++){
-        if((arr[i]<limit)&&(arr[i]%2==0)){
-            sum += arr[i];
-        }
-        else{
-            break;
-        }
-    }
-    cout << "The sum of the even-valued Fibonacci terms less than 4_000_000 is: " << sum << endl;
+    unsigned int even_sum_under_limit;
+    even_sum_under_limit = this->fibNumberModified(limit);
+    cout << "The sum of the even-valued Fibonacci terms less than 4_000_000 is: " << even_sum_under_limit << "." << endl;
     
 }
 
 Solutions::~Solutions(){
 
-}*/
+}

@@ -8,5 +8,5 @@ int main(){
 
     Solutions sol1;
     sol1.id1();
-    cout << sol1.fibSeries(10) << endl;
+    sol1.id2();
 }

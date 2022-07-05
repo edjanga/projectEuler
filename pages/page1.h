@@ -8,8 +8,8 @@ class Solutions{
         Solutions();
         ~Solutions();
         void id1();
-        int fibNumber(unsigned int& n, std::map<int,int>& memo = std::map<int,int>()); // Method needed to solve other problems.
-        //void id2();
+        int fibNumberModified(const unsigned int& n); // Method needed to solve other problems.
+        void id2();
 };
 
 #endif
