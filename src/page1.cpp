@@ -1,5 +1,6 @@
 #include <iostream>
 #include "page1.h"
+#include "functions.h"
 #include <iomanip>
 #include <algorithm>
 #include <vector>
@@ -14,6 +15,9 @@ using std::for_each;
 Solutions::Solutions(){
 
 }
+Functions Solutions::getFunctionsObj(){
+    return this->functions_obj;
+}
 void Solutions::id1(const unsigned int& num_id1){
     int sum = 0;
     for(unsigned int i = 0; i < num_id1; i++){
@@ -23,8 +27,8 @@ void Solutions::id1(const unsigned int& num_id1){
     }
     cout << "The sum of all multiples of 3 or 5 smaller than " << num_id1 << " is: " << sum << "." << endl;
 }
-int Solutions::fibNumberModified(const unsigned int& n){
-    // N-th Fib in O(n) time
+int Solutions::fibNumberModified(const int& n){
+    // N-th Fib iteratively in O(n) time
     int *arr = new int[n];
     arr[0] = 1;
     arr[1] = 2;
@@ -96,6 +100,13 @@ void Solutions::id6(const unsigned int& lower_bound,const unsigned int& upper_bo
     square_sum = square_sum*square_sum;
     cout << "The difference between the sum of the squares of the first " << upper_bound << " numbers and the square of the sum is: " << sum_square-square_sum << "."<< endl;
     
+}
+void Solutions::id7(const long int& num_id7){
+    cout << "The " << num_id7 << "th prime number is: " << this->getFunctionsObj().nThPrime(num_id7) << "." << endl;
+}
+void Solutions::id10(const unsigned int& id10){
+
+    cout << "The sum of all the primes below " << id10 << " is: " << getFunctionsObj().sumSieveEratosthenes(id10) << "." << endl;
 }
 Solutions::~Solutions(){
 

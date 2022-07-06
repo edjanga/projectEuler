@@ -1,6 +1,4 @@
 .vscode
-main
-*.o
-*.out
+bin/
 .DS_Store
 

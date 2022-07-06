@@ -1,11 +1,21 @@
-main: main.o page1.o
-	g++-11 -o main main.o page1.o
+CXX       := g++-11
+CXX_FLAGS := -std=c++17 -ggdb
 
-main.o: main.cpp
-	g++-11 -c main.o main.cpp
+BIN     := bin
+SRC     := src
+INCLUDE := include
 
-page1.o: pages/page1.cpp
-	g++-11 -c pages/page1.cpp
+LIBRARIES   :=
+EXECUTABLE  := main
+
+all: $(BIN)/$(EXECUTABLE)
+
+run: clean all
+	clear
+	./$(BIN)/$(EXECUTABLE)
+
+$(BIN)/$(EXECUTABLE): $(SRC)/*.cpp
+	$(CXX) $(CXX_FLAGS) -I$(INCLUDE) $^ -o $@ $(LIBRARIES)
 
 clean:
-	rm *.o main
+	-rm $(BIN)/*

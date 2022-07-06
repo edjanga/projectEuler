@@ -1,6 +1,7 @@
 #include <iostream>
 #include <iomanip>
-#include "pages/page1.h"
+#include "page1.h"
+
 using std::cout;
 using std::endl;
 
@@ -12,4 +13,6 @@ int main(){
     sol1.id3(600851475143);
     sol1.id5(1,20);
     sol1.id6(1,100);
+    sol1.id7(10001);
+    sol1.id10(2000000);
 }
