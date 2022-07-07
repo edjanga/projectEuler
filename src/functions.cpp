@@ -11,10 +11,7 @@ using std::for_each;
 using std::cout;
 using std::endl;
 
-Functions::Functions(){
-
-}
-int Functions::nThFib(const unsigned int& n){
+int nThFib(const unsigned int& n){
     vector<int> vFib;
     vFib.push_back(1);
     vFib.push_back(2);
@@ -23,7 +20,7 @@ int Functions::nThFib(const unsigned int& n){
     }
     return vFib.back();
 }
-int Functions::sumOfFibUpTo(const unsigned int& n){
+int sumOfFibUpTo(const unsigned int& n){
     vector<int> vFib;
     vFib.push_back(1);
     vFib.push_back(2);
@@ -36,8 +33,8 @@ int Functions::sumOfFibUpTo(const unsigned int& n){
     }
     return sum;
 }
-int Functions::sumSieveEratosthenes(const unsigned int& n){
-    // Largest prime number smaller than n using Eratosthenes' sieve
+int sumSieveEratosthenes(const unsigned int& n){
+    // Sum of prime number smaller than n using Eratosthenes' sieve
     vector<int> range;
     for(unsigned int i = 2; i < n+1; i++){
         range.push_back(i);
@@ -66,7 +63,7 @@ int Functions::sumSieveEratosthenes(const unsigned int& n){
     });
     return sum;
 }
-bool Functions::isPrime(const unsigned int& n){
+bool isPrime(const unsigned int& n){
     if(n==2) return true;
     for(unsigned int i = 2; i < n; i++){
         if((n%i==0)){
@@ -76,7 +73,7 @@ bool Functions::isPrime(const unsigned int& n){
     }
     return true;
 }
-int Functions::nThPrime(const unsigned int& n){
+int nThPrime(const unsigned int& n){
     unsigned int count = 2;
     vector<int> vPrimes;
     do{
@@ -86,6 +83,14 @@ int Functions::nThPrime(const unsigned int& n){
     while(vPrimes.size()!=n);
     return vPrimes.back();
 }
-Functions::~Functions(){
-
+int numberOfDigits(const unsigned int& n){
+    unsigned int n_copy = n;
+    unsigned int digits = 1;
+    while(!((n_copy>=1)&&(n_copy<10))){
+        unsigned int remainder = n_copy%10;
+        n_copy -= remainder;
+        n_copy /= 10;
+        digits++;
+    }
+    return digits; 
 }
