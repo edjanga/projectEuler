@@ -84,13 +84,14 @@ int nThPrime(const unsigned int& n){
     return vPrimes.back();
 }
 int numberOfDigits(const unsigned int& n){
-    unsigned int n_copy = n;
+    /*unsigned int n_copy = n;
     unsigned int digits = 1;
     while(!((n_copy>=1)&&(n_copy<10))){
         unsigned int remainder = n_copy%10;
         n_copy -= remainder;
         n_copy /= 10;
         digits++;
-    }
+    }*/
+    unsigned int digits = static_cast<int>(floor(log10(n)+1.0));
     return digits; 
 }

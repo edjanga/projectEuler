@@ -15,9 +15,6 @@ using std::for_each;
 Solutions::Solutions(){
 
 }
-Functions Solutions::getFunctionsObj(){
-    return this->functions_obj;
-}
 void Solutions::id1(const unsigned int& num_id1){
     int sum = 0;
     for(unsigned int i = 0; i < num_id1; i++){
@@ -102,12 +99,22 @@ void Solutions::id6(const unsigned int& lower_bound,const unsigned int& upper_bo
     
 }
 void Solutions::id7(const long int& num_id7){
-    cout << "The " << num_id7 << "th prime number is: " << this->getFunctionsObj().nThPrime(num_id7) << "." << endl;
+    cout << "The " << num_id7 << "th prime number is: " << nThPrime(num_id7) << "." << endl;
 }
 void Solutions::id10(const unsigned int& id10){
 
-    cout << "The sum of all the primes below " << id10 << " is: " << getFunctionsObj().sumSieveEratosthenes(id10) << "." << endl;
+    cout << "The sum of all the primes below " << id10 << " is: " << sumSieveEratosthenes(id10) << "." << endl;
 }
+void Solutions::id25(const long int& num_id25){
+    unsigned int count = 0;
+    unsigned int i = 0;
+    while(numberOfDigits(i)<num_id25){
+        i = nThFib(count);
+        count++;
+    }
+    cout << "The index of the first Fibonacci number with " << num_id25 << " digits is: " << count+1 << "." << endl;
+}
+
 Solutions::~Solutions(){
 
 }

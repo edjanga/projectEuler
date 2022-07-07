@@ -3,15 +3,11 @@
 
 #pragma once
 
-class Functions{
-    public:
-        Functions();
-        int nThFib(const unsigned int& n);
-        int sumOfFibUpTo(const unsigned int& n);
-        int nThPrime(const unsigned int& n);
-        int sumSieveEratosthenes(const unsigned int& n);
-        bool isPrime(const unsigned int& n);
-        ~Functions();
-};
+int nThFib(const unsigned int& n);
+int sumOfFibUpTo(const unsigned int& n);
+int nThPrime(const unsigned int& n);
+int sumSieveEratosthenes(const unsigned int& n);
+bool isPrime(const unsigned int& n);
+int numberOfDigits(const unsigned int& n);
 
 #endif
