@@ -4,6 +4,7 @@
 #include <iomanip>
 #include <algorithm>
 #include <vector>
+#include<utility>
 #include <cmath>
 
 using std::cout;
@@ -11,6 +12,10 @@ using std::cin;
 using std::endl;
 using std::vector;
 using std::for_each;
+using std::pair;
+using std::map;
+
+typedef std::pair<int,int> pair_int;
 
 Solutions::Solutions(){
 
@@ -105,14 +110,72 @@ void Solutions::id10(const unsigned int& id10){
 
     cout << "The sum of all the primes below " << id10 << " is: " << sumSieveEratosthenes(id10) << "." << endl;
 }
+int Solutions::recursionID15(unsigned int num_id15A,unsigned int num_id15B,map<pair_int,int>& container){
+    if((num_id15A==1)&&(num_id15B==1)) return 2;
+    if((num_id15A==1)||(num_id15B==1)) return (num_id15A>num_id15B)?num_id15A+1:num_id15B+1;
+    if(container.count(pair(num_id15A,num_id15B))==1) return container[pair(num_id15A,num_id15B)];
+    return recursionID15(num_id15A-1,num_id15B,container)+recursionID15(num_id15A,num_id15B-1,container);
+}
+void Solutions::id15(unsigned int num_id15A, unsigned int num_id15B,map<pair_int,int>& container){
+    cout << "There are " << recursionID15(num_id15A,num_id15B,container) << " ways to go through this grid." << endl;
+}
 void Solutions::id25(const long int& num_id25){
-    unsigned int count = 0;
+    /*unsigned int count = 0;
     unsigned int i = 0;
     while(numberOfDigits(i)<num_id25){
         i = nThFib(count);
         count++;
+    }*/
+    unsigned int left = 1;
+    unsigned int right = num_id25;
+    unsigned int mid = (left+right)/2;
+    unsigned int target = nThFib(mid);
+    cout << target << endl;
+    int min = numberOfDigits(left)<numberOfDigits(right)?numberOfDigits(left):numberOfDigits(right);
+    int max = numberOfDigits(left)>numberOfDigits(right)?numberOfDigits(left):numberOfDigits(right);
+    int* pMin = &min;
+    int* pMax = &max;
+    while(numberOfDigits(target)!=num_id25){
+        // Both Fib numbers have more digitis than n
+        if(numberOfDigits(*pMin)>num_id25){
+            left /= 2;
+            right /= 2;
+            *pMin = numberOfDigits(left)<numberOfDigits(right)?numberOfDigits(left):numberOfDigits(right);
+            *pMax = numberOfDigits(left)>numberOfDigits(right)?numberOfDigits(left):numberOfDigits(right);
+            mid = (left+right)/2;
+            int target = nThFib(mid);
+        }
+        // Both Fib numbers have less digits than n
+        else if(numberOfDigits(*pMax)<num_id25){
+            left *= 2;
+            right *= 2;
+            *pMin = numberOfDigits(left)<numberOfDigits(right)?numberOfDigits(left):numberOfDigits(right);
+            *pMax = numberOfDigits(left)>numberOfDigits(right)?numberOfDigits(left):numberOfDigits(right);
+            mid = (left+right)/2;
+            int target = nThFib(mid);
+        }
+        // One of the Fib numbers has the same digits as n
+        else{
+            if((numberOfDigits(*pMin)==num_id25)&&(numberOfDigits(*pMax)==num_id25)){
+                break;
+            }
+            // Lower bound has the same number of digits as n
+            else if((numberOfDigits(*pMin)==num_id25)&&(numberOfDigits(*pMax)!=num_id25)){
+                right--;
+                *pMax = numberOfDigits(right);
+                mid = (left+right)/2;
+                target = nThFib(mid);
+            }
+            // Upper bound has the same number of digits as n
+            else{
+                left++;
+                *pMin = numberOfDigits(left);
+                mid = (left+right)/2;
+                target = nThFib(mid);
+            }
+        }
     }
-    cout << "The index of the first Fibonacci number with " << num_id25 << " digits is: " << count+1 << "." << endl;
+    cout << "The index of the first Fibonacci number with " << num_id25 << " digits is: " << mid << "." << endl;
 }
 
 Solutions::~Solutions(){

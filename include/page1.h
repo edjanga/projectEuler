@@ -1,9 +1,11 @@
 #ifndef PAGE1_H
 #define PAGE1_H
 #include <map>
-
+#include <utility>
 
 #pragma once
+
+typedef std::pair<int,int> pair_int;
 
 class Solutions{
 
@@ -18,7 +20,9 @@ class Solutions{
         void id5(const unsigned int& lower_bound,const unsigned int& upper_bound);
         void id6(const unsigned int& lower_bound,const unsigned int& upper_bound);
         void id7(const long int& num_id7);
-        void id10(const unsigned int& id10);
+        void id10(const unsigned int& num_id10);
+        int recursionID15(unsigned int num_id15A,unsigned int num_id15B,std::map<pair_int,int>& container);
+        void id15(unsigned int num_id15A,unsigned int num_id15B,std::map<pair_int,int>& container);
         void id25(const long int& num_id25);
 
 };
