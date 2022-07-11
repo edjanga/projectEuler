@@ -106,10 +106,44 @@ void Solutions::id6(const unsigned int& lower_bound,const unsigned int& upper_bo
 void Solutions::id7(const long int& num_id7){
     cout << "The " << num_id7 << "th prime number is: " << nThPrime(num_id7) << "." << endl;
 }
-void Solutions::id10(const unsigned int& id10){
+/*void Solutions::id9(const long int& num_id9A,const long int& num_id9B,const long int& num_id9C){
+    unsigned int c;
+    bool** matrix = new bool* [num_id9C];
+    for(unsigned int i = 0; i < num_id9C; i++){
+        matrix[i] = new bool[num_id9C];
+    }
 
-    cout << "The sum of all the primes below " << id10 << " is: " << sumSieveEratosthenes(id10) << "." << endl;
+    for(unsigned int i = 0; i < num_id9C; i++){
+        for(unsigned int j = 0; j < num_id9C; j++){
+            float c = sqrt((i+1)*(i+1)+(j+1)*(j+1));
+            bool temp = (floor(c)==ceil(c)?true:false);
+            matrix[i][j] = temp;
+        }    
+    }
+    for(unsigned int i = 0; i < num_id9C; i++){
+        for(unsigned int j = 0; j < num_id9C; j++){
+            if(matrix[i][j]==true){
+                int c = (i+1)*(i+1)+(j+1)*(j+1);
+                if((num_id9A+num_id9B+c)==num_id9C){
+                    break;
+                }
+            }
+        }    
+    }
+    for(unsigned int i = 0; i < num_id9C; i++){
+        delete [] matrix[i];    
+    }
+    delete [] matrix;
+    cout << c << endl;
+
+}*/
+void Solutions::id10(const unsigned int& num_id10){
+
+    cout << "The sum of all the primes below " << num_id10 << " is: " << sumSieveEratosthenes(num_id10) << "." << endl;
 }
+/*void Solutions::id12(const unsigned int& num_id12){
+    
+}*/
 int Solutions::recursionID15(unsigned int num_id15A,unsigned int num_id15B,map<pair_int,int>& container){
     if((num_id15A==1)&&(num_id15B==1)) return 2;
     if((num_id15A==1)||(num_id15B==1)) return (num_id15A>num_id15B)?num_id15A+1:num_id15B+1;
@@ -117,67 +151,37 @@ int Solutions::recursionID15(unsigned int num_id15A,unsigned int num_id15B,map<p
     return recursionID15(num_id15A-1,num_id15B,container)+recursionID15(num_id15A,num_id15B-1,container);
 }
 void Solutions::id15(unsigned int num_id15A, unsigned int num_id15B,map<pair_int,int>& container){
-    cout << "There are " << recursionID15(num_id15A,num_id15B,container) << " ways to go through this grid." << endl;
+    cout << "There are " << recursionID15(num_id15A,num_id15B,container) << " ways to go through a " << num_id15A << " x " << num_id15B << " grid." << endl;
 }
-void Solutions::id25(const long int& num_id25){
-    /*unsigned int count = 0;
-    unsigned int i = 0;
-    while(numberOfDigits(i)<num_id25){
-        i = nThFib(count);
+void Solutions::id16(const unsigned int& base,int n){
+    // Functions pointers - Note that one can use the functions directly as they were not passed in as arguments
+    int(*ptrLongPower)(const unsigned int&,int, map_int_int&) = longPower;
+    int(*ptrNumberOfDigits)(const unsigned int&) = numberOfDigits;
+    map_int_int memo;
+    // n-th power in O(n)
+    int vLongPower = ptrLongPower(base,n+1,memo);
+    int vNumberOfDigits = ptrNumberOfDigits(vLongPower);
+    vector<int> digitsStore;
+    int count = 1;
+    while(count <= vNumberOfDigits){
+        int remainder = vLongPower%10;
+        digitsStore.push_back(remainder);
+        vLongPower -= remainder;
+        vLongPower /= 10;
         count++;
-    }*/
-    unsigned int left = 1;
-    unsigned int right = num_id25;
-    unsigned int mid = (left+right)/2;
-    unsigned int target = nThFib(mid);
-    cout << target << endl;
-    int min = numberOfDigits(left)<numberOfDigits(right)?numberOfDigits(left):numberOfDigits(right);
-    int max = numberOfDigits(left)>numberOfDigits(right)?numberOfDigits(left):numberOfDigits(right);
-    int* pMin = &min;
-    int* pMax = &max;
-    while(numberOfDigits(target)!=num_id25){
-        // Both Fib numbers have more digitis than n
-        if(numberOfDigits(*pMin)>num_id25){
-            left /= 2;
-            right /= 2;
-            *pMin = numberOfDigits(left)<numberOfDigits(right)?numberOfDigits(left):numberOfDigits(right);
-            *pMax = numberOfDigits(left)>numberOfDigits(right)?numberOfDigits(left):numberOfDigits(right);
-            mid = (left+right)/2;
-            int target = nThFib(mid);
-        }
-        // Both Fib numbers have less digits than n
-        else if(numberOfDigits(*pMax)<num_id25){
-            left *= 2;
-            right *= 2;
-            *pMin = numberOfDigits(left)<numberOfDigits(right)?numberOfDigits(left):numberOfDigits(right);
-            *pMax = numberOfDigits(left)>numberOfDigits(right)?numberOfDigits(left):numberOfDigits(right);
-            mid = (left+right)/2;
-            int target = nThFib(mid);
-        }
-        // One of the Fib numbers has the same digits as n
-        else{
-            if((numberOfDigits(*pMin)==num_id25)&&(numberOfDigits(*pMax)==num_id25)){
-                break;
-            }
-            // Lower bound has the same number of digits as n
-            else if((numberOfDigits(*pMin)==num_id25)&&(numberOfDigits(*pMax)!=num_id25)){
-                right--;
-                *pMax = numberOfDigits(right);
-                mid = (left+right)/2;
-                target = nThFib(mid);
-            }
-            // Upper bound has the same number of digits as n
-            else{
-                left++;
-                *pMin = numberOfDigits(left);
-                mid = (left+right)/2;
-                target = nThFib(mid);
-            }
-        }
     }
-    cout << "The index of the first Fibonacci number with " << num_id25 << " digits is: " << mid << "." << endl;
-}
+    unsigned int sum = 0;
+    for_each(digitsStore.begin(),digitsStore.end(),[&sum](int i){
+        sum += i;
+    });
+    cout << sum << endl;
 
+
+}
+/*void Solutions::id25(const long int& num_id25){
+    int(*ptrNthFib)(const unsigned int&) = nThFib;
+    cout << "The index of the first Fibonacci number with " << num_id25 << " digits is: " << binarySearchModified(num_id25,ptrNthFib,1000000) << "." << endl;
+}*/
 Solutions::~Solutions(){
 
 }

@@ -11,6 +11,8 @@ using std::for_each;
 using std::cout;
 using std::endl;
 
+typedef map<int,int> map_int_int;
+
 int nThFib(const unsigned int& n){
     vector<int> vFib;
     vFib.push_back(1);
@@ -95,3 +97,66 @@ int numberOfDigits(const unsigned int& n){
     unsigned int digits = static_cast<int>(floor(log10(n)+1.0));
     return digits; 
 }
+int nThTriangleNumber(const unsigned int& n){
+    int number = 1;
+    int count = 1;
+    while(count<=n){
+        number += count;
+        count++;
+    }
+    return number;
+}
+int longPower(const unsigned int& base,int n, map_int_int& memo){
+    if(n==1) return n;
+    if(memo.count(n)==1) return memo[n];
+    memo[n] = base*longPower(base,n-1,memo);
+    return memo[n];
+}
+//void isPalindorm(const unsigned int& n){
+    //vector<int> digitsStore;
+    //int numDigits = numberOfDigits(n);
+    //cout << numDigits << endl;
+    /*int count = 0;
+    int* pCount;
+    pCount = &count;
+    int revN = 0;
+    cout << *pCount << endl;*/
+    /*while(*pCount<=numDigits){
+        int remainder = n%10;
+        digitsStore.push_back(remainder);
+        cout << digitsStore[*pCount] << " ";
+        n -= remainder;
+        n /= 10;
+        *pCount++;
+    }*/
+    /*int idx = digitsStore.size()-1;
+    map_int_int memo;
+    for_each(digitsStore.end(),digitsStore.begin(),[&revN,&idx,&memo](int digit){
+        revN += longPower(10,idx,memo)*digit;
+        idx--;
+    });
+    delete pCount;
+    return (revN==n)?true:false;*/
+    //cout << "Test" << endl;
+
+//}
+/*int binarySearchModified(const int& target,int (*nThFibPtr)(const unsigned int&),const long int& n){
+    int (*amountOfDifgitsPtr)(const unsigned int&) = numberOfDigits;
+    int left = 0;
+    int right = n;
+    int mid = (left+right)/2;
+    while(left<=right){
+        if(amountOfDifgitsPtr(nThFibPtr(mid))>target){
+            right = mid-1;
+            mid = (left+right)/2;
+        }
+        else if(amountOfDifgitsPtr(nThFibPtr(mid))<target){
+            left = mid+1;
+            mid = (left+right)/2;
+        }
+        else{
+            break;
+        }
+    }
+    return mid;
+}*/
