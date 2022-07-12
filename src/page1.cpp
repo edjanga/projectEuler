@@ -1,4 +1,5 @@
 #include <iostream>
+#include <stdio.h>
 #include "page1.h"
 #include "functions.h"
 #include <iomanip>
@@ -67,6 +68,22 @@ void Solutions::id3(const long int& num_id3){
     cout << "The largest prime factor of the number " << num_id3 << " is: " << max_prime_factor << endl;
     
     
+}
+void Solutions::id4(const long int& num_id4){
+    map_int_int memo;
+    map_int_int memo2;
+    unsigned int temp;
+    unsigned int max_number = 0;
+    unsigned int lower = longPower(10,num_id4,memo);
+    unsigned int upper = longPower(10,num_id4+1,memo2)-1;
+    for(unsigned int i = upper; i >= lower; i--){
+        for(unsigned int j = i; j >= lower; j--){
+                temp = i*j;
+                if((temp>max_number)&&(isPalindorm(temp))) max_number = temp;
+        }
+    }
+    cout << max_number << endl;
+    cout << printf("The largest palindrom formed by the product of two %d digit numbers is: %d.\n",num_id4,max_number);
 }
 void Solutions::id5(const unsigned int& lower_bound,const unsigned int& upper_bound){
     unsigned int start_point = upper_bound+1;

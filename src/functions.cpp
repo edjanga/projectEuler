@@ -112,34 +112,17 @@ int longPower(const unsigned int& base,int n, map_int_int& memo){
     memo[n] = base*longPower(base,n-1,memo);
     return memo[n];
 }
-//void isPalindorm(const unsigned int& n){
-    //vector<int> digitsStore;
-    //int numDigits = numberOfDigits(n);
-    //cout << numDigits << endl;
-    /*int count = 0;
-    int* pCount;
-    pCount = &count;
-    int revN = 0;
-    cout << *pCount << endl;*/
-    /*while(*pCount<=numDigits){
-        int remainder = n%10;
-        digitsStore.push_back(remainder);
-        cout << digitsStore[*pCount] << " ";
-        n -= remainder;
-        n /= 10;
-        *pCount++;
-    }*/
-    /*int idx = digitsStore.size()-1;
-    map_int_int memo;
-    for_each(digitsStore.end(),digitsStore.begin(),[&revN,&idx,&memo](int digit){
-        revN += longPower(10,idx,memo)*digit;
-        idx--;
-    });
-    delete pCount;
-    return (revN==n)?true:false;*/
-    //cout << "Test" << endl;
-
-//}
+bool isPalindorm(const unsigned int& n){
+    int n_copy = n;
+    int rev = 0;
+    int remainder = 0;
+    while(n_copy!=0){
+        remainder = n_copy%10;
+        rev = 10*rev+remainder;
+        n_copy /= 10;
+    }
+    return (rev==n)?true:false; 
+}
 /*int binarySearchModified(const int& target,int (*nThFibPtr)(const unsigned int&),const long int& n){
     int (*amountOfDifgitsPtr)(const unsigned int&) = numberOfDigits;
     int left = 0;

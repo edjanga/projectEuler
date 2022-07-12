@@ -15,11 +15,11 @@ typedef std::pair<int,int> pair_int;
 int main(){
 
     Solutions sol1;
-    sol1.id1(1000);
-    sol1.id2(4000000);
-    sol1.id3(600851475143);
+    /*sol1.id1(1000);
+    sol1.id2(4000000);*/
+    //sol1.id3(600851475143);//
     // 4
-    sol1.id5(1,20);
+    /*sol1.id5(1,20);
     sol1.id6(1,100);
     sol1.id7(10001);
     // 8 9
@@ -27,5 +27,6 @@ int main(){
     map<pair_int,int> container;
     // 11 12 13 14
     sol1.id15(10,10,container);
-    //sol1.id9(1,1,10);
+    //sol1.id9(1,1,10);*/
+    sol1.id4(4);
 }
